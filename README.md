@@ -2,3 +2,4 @@
 
 
 #### Github Pages
+https://schiafang.github.io/rgb-to-hex/
