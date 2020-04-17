@@ -1,7 +1,7 @@
 body {
   justify-content: center;
   align-items: center;
-  background-color: rgb(245, 244, 241);
+  background-color: rgb(230, 230, 230);
 }
 .wrapper {
   display: flex;
@@ -14,11 +14,10 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  width: 560px;
-  border: 0.5px solid rgb(201, 201, 201);
+  background-color: rgb(245, 245, 245);
   border-radius: 5px;
-  margin: 2% 5%;
-  padding: 5%;
+  margin: 0% 5%;
+  padding: 2% 5%;
 }
 .box {
   width: 50px;
@@ -50,10 +49,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color:rgb(235, 232, 232);
-  margin: 4% 5%;
+  background-color:rgb(128, 128, 128);
+  margin: 3%;
   border-radius: 5px;
-  padding: 3%;
+  padding: 1% 4%;
 }
 .slider-range-value {
   display: flex;
