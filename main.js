@@ -10,7 +10,7 @@ const convertBtn = document.querySelector('.convert-btn')
 
 const RGBToHex = (r, g, b) => ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0').toUpperCase()
 
-//--------------- Function ---------------//
+//-------------------------- Form Version --------------------------//
 //輸入框數值RGB轉換成Hex
 function switchToHex() {
   let r = Number(valueR.value)
@@ -22,24 +22,15 @@ function switchToHex() {
 }
 //轉換R預覽顏色
 function switchRedBox() {
-  let r = Number(valueR.value)
-  let g = 0
-  let b = 0
-  colorBoxR.style.backgroundColor = `#${RGBToHex(r, g, b)}`
+  colorBoxR.style.backgroundColor = `#${RGBToHex(Number(valueR.value), 0, 0)}`
 }
 //轉換G預覽顏色
 function switchGreenBox() {
-  let r = 0
-  let g = Number(valueG.value)
-  let b = 0
-  colorBoxG.style.backgroundColor = `#${RGBToHex(r, g, b)}`
+  colorBoxG.style.backgroundColor = `#${RGBToHex(0, Number(valueG.value), 0)}`
 }
 //轉換B預覽顏色
 function switchBlueBox() {
-  let r = 0
-  let g = 0
-  let b = Number(valueB.value)
-  colorBoxB.style.backgroundColor = `#${RGBToHex(r, g, b)}`
+  colorBoxB.style.backgroundColor = `#${RGBToHex(0, 0, Number(valueB.value))}`
 }
 //input數值限制並且不為空值
 function valueRange() {
@@ -49,7 +40,7 @@ function valueRange() {
     alert('please enter number 0-255')
   }
 }
-//--------------- Handler ---------------//
+//----------- Form Handler ----------//
 //監控convert按鈕
 convertBtn.addEventListener('click', event => {
   valueRange()
@@ -91,3 +82,56 @@ valueB.addEventListener('input', event => {
   if (Number(valueB.value) < 0 || Number(valueB.value) > 255) { alert('please enter number 0-255') }
   switchBlueBox()
 })
+//-------------------------- Slider Version --------------------------//
+const sliderR = document.querySelector('.slider-r')
+const sliderG = document.querySelector('.slider-g')
+const sliderB = document.querySelector('.slider-b')
+const outputR = document.querySelector('.slider-value-r')
+const outputG = document.querySelector('.slider-value-g')
+const outputB = document.querySelector('.slider-value-b')
+// 轉換hex碼
+function switchToHexSlider() {
+  let r = Number(sliderR.value)
+  let g = Number(sliderG.value)
+  let b = Number(sliderB.value)
+  let hexValue = `#${RGBToHex(r, g, b)}`
+  document.querySelector('.slider-hex-value').innerText = hexValue
+  document.querySelector('.container-slider').style.backgroundColor = hexValue
+
+  return hexValue
+}
+// 轉換預覽顏色
+function switchRedSlider(value) {
+  value = `#${RGBToHex(value, 0, 0)}`
+
+  return value
+}
+function switchGreenSlider(value) {
+  value = `#${RGBToHex(0, value, 0)}`
+
+  return value
+}
+function switchBlueSlider(value) {
+  value = `#${RGBToHex(0, 0, value)}`
+
+  return value
+}
+// 即時更新顏色
+outputR.innerText = sliderR.value
+sliderR.oninput = function () {
+  outputR.innerText = this.value
+  switchToHexSlider()
+  outputR.style.color = switchRedSlider(Number(this.value))
+}
+outputG.innerText = sliderG.value
+sliderG.oninput = function () {
+  outputG.innerText = this.value
+  switchToHexSlider()
+  outputG.style.color = switchGreenSlider(Number(this.value))
+}
+outputB.innerText = sliderB.value
+sliderB.oninput = function () {
+  outputB.innerText = this.value
+  switchToHexSlider()
+  outputB.style.color = switchBlueSlider(Number(this.value))
+}
